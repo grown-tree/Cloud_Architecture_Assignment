@@ -13,7 +13,6 @@
 ![img_3.png](img_3.png)
 ### LV 3 - Presigned URL
 #### - Presigned URL 만료 시간: 2026-03-19 19:19:53 KST
-
 ![img_6.png](img_6.png)
 ![img_7.png](img_7.png)
     
