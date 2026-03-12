@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -44,6 +45,28 @@ public class MemberController {
         List<MemberResponseDto> members = memberService.getAllMembers();
         return ResponseEntity.ok(members);
     }
+
+    //프로필 이미지 업로드
+    @PostMapping("/{id}/profile-image")
+    public ResponseEntity<String> uploadProfileImage(
+            @PathVariable Long id,
+            @RequestParam("file") MultipartFile file) {
+        log.info("[API - LOG] 프로필 이미지 업로드 요청 ID: {}", id);
+
+        String imageUrl = memberService.uploadProfileImage(id, file);
+        return ResponseEntity.ok(imageUrl);
+    }
+
+    // 프로필 이미지 조회를 위한 Presigned URL 발급
+    @GetMapping("/{id}/profile-image")
+    public ResponseEntity<String> getProfilePresignedUrl(@PathVariable Long id) {
+        log.info("[API - LOG] Presigned URL 조회 요청 ID: {}", id);
+
+        String presignedUrl = memberService.getPresignedUrl(id);
+        return ResponseEntity.ok(presignedUrl);
+    }
+
+
 
 
 }

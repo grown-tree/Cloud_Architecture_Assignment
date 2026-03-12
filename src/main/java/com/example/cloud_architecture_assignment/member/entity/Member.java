@@ -1,6 +1,5 @@
 package com.example.cloud_architecture_assignment.member.entity;
 
-import io.micrometer.observation.annotation.Observed;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,5 +24,12 @@ public class Member {
 
     @Column(length = 10, nullable = false)
     private String mbti;
+
+    @Column
+    private String profileImageUrl;
+
+    public void updateProfileImage(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
 
 }

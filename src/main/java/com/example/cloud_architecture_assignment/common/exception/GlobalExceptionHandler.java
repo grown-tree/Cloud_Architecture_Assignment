@@ -26,5 +26,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(e.getStatusCode()).body(e.getReason());
     }
 
+    @ExceptionHandler(FileUploadException.class)
+    public ResponseEntity<?> handleFileUploadException(FileUploadException e) {
+        log.error("[API - LOG] 파일 업로드 실패: ", e);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+    }
 
 }
